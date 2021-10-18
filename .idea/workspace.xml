@@ -5,14 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1a70333-7c4b-4ce6-bd1d-90e00581ef3c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Actions.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RoomGenerator.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/inventory.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game.py" beforeDir="false" afterPath="$PROJECT_DIR$/Game.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Game2.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +41,7 @@
     </option>
   </component>
   <component name="RunManager" selected="Python.Game2">
-    <configuration name="Game2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="Game2" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -91,7 +85,6 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.Game2" />
         <item itemvalue="Python.inventory" />
       </list>
     </recent_temporary>
@@ -117,5 +110,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
