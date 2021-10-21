@@ -14,7 +14,7 @@ dungeon = room.choseDungeonSize()
 ###initalise counters
 dungeonCount = 0
 heroLifeCounter = 20
-heroDamage = 10
+heroDamage = 1
 enemyLifeCounter = 10
 
 enemyList = ["Dragon", "Vampire", "Ghoul", "GiantSpider", "Ogre", "none"]
