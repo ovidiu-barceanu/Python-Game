@@ -13,7 +13,7 @@ dungeon = room.choseDungeonSize()
 
 ###initalise counters
 dungeonCount = 0
-heroLifeCounter = 20
+heroLifeCounter = 2
 heroDamage = 1
 enemyLifeCounter = 10
 
@@ -25,8 +25,8 @@ while(dungeonCount < dungeon):
     print("dungeonCount is " + str(dungeonCount))
     actions.moveForward()
     #room.generateEnemy(enemyList)
-    ogre.fight(heroLifeCounter, heroDamage)
-    ogre.is_alive()
+    ogre.fightSequence(heroLifeCounter, heroDamage)
+    #ogre.is_alive()
     room.generateLoot(loot)
     dungeonCount += 1
     print(dungeonCount)

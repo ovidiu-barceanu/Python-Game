@@ -9,102 +9,72 @@ class Enemy:
     def is_alive(self):
         return self.hp > 0
 
-
-
-
     def randomMiss(self):
         miss = random.choice([True, False])
         return miss
 
     def enemyAttack(self, hitPoints):
-        print("The enemy makes his attack")
+        print("The " + self.name + " makes his attack")
         if (self.randomMiss() == True):
-            print("You are lucky. The enemy missed")
+            print("You are lucky. The " + self.name + " missed")
+            return hitPoints
         else:
             hitPoints = hitPoints - self.damage
             print("Your hp drops to " + str(hitPoints))
             print("##############")
             print()
-            return int(hitPoints)
+            return hitPoints
 
 
     def heroAttack(self, enemyLife,heroDamage):
-        print("you stare in the eye of your enemy and you make your attack")
+        print("You take a deep breath and measure your enemy, then make your attack")
         if (self.randomMiss() == True):
             print("Tough luck, you just missed")
+            return enemyLife
         else:
             enemyLife = enemyLife - heroDamage
-            print("Enemy hp drops to " + str(enemyLife))
+            print("The " + self.name + " HitPoints drops to " + str(enemyLife))
             print("##############")
             print()
-            return int(enemyLife)
+            return enemyLife
 
+    def checkWinner(self, hitPoints, enemyLife, round):
+        if (hitPoints <= 0):
+            print("you lost")
+            print("you lasted " + str(round) + " rounds")
+            print("##############")
+            print()
 
-    def fight(self, heroLife, heroDamage):
+        elif (enemyLife <= 0):
+            print("You succeded in defeating your enemy")
+            print("The enemy lasted " + str(round) + " rounds")
+            print("##############")
+            print()
+
+    def fightSequence(self, heroLife, heroDamage):
         #Counters
         round = 0
         hitPoints = heroLife
+        print(hitPoints)
         enemyLife = self.hp
+        print(enemyLife)
+#TODO find a whay to separate the fight
+        while(hitPoints >= 1 or enemyLife >= 1):
+            #while (enemyLife >= 0):
+            round += 1
+            print("Current round is " + str(round))
+            print("##############")
+            print()
+            hitPoints = self.enemyAttack(hitPoints)
+            input("Enemy atack round ended. Hit enter to continue. (press enter)")
+            print(hitPoints)
+            print()
+            enemyLife = self.heroAttack(enemyLife, heroDamage)
+            input("Your attack round ended. Hit enter to continue. (press enter)")
+            print(enemyLife)
+            print()
 
-        while(hitPoints >= 0):
-            while (enemyLife >= 0 ):
-                round += 1
-                print("Current round is " + str(round))
-                print("##############")
-                print()
-
-                hitPoints = self.enemyAttack(hitPoints)
-                input("Enemy atack end. Hit enter to continue. (press enter)")
-                print()
-                enemyLife = self.heroAttack(enemyLife, heroDamage)
-                input("Your atack end. Hit enter to continue. (press enter)")
-                print()
-
-                """
-                # Enemy attack round
-                print("The enemy makes his attack")
-                if(missEnemy == True):
-                    print("You are lucky. The enemy missed")
-                else:
-                    hitPoints = hitPoints - self.damage
-                    print("Your hp drops to " + str(hitPoints))
-                    print("##############")
-                    print()
-                
-                """
-                """
-                input("Enemy atack end. Hit enter to continue. (press enter)")
-                print()
-
-                # Hero attack round
-                print("you stare in the eye of your enemy and you make your attack")
-                if (missHero == True):
-                    print("Tough luck, you just missed")
-                else:
-                    enemyLife = enemyLife - heroDamage
-                    print("Enemy hp drops to " + str(enemyLife))
-                    print("##############")
-                    print()
-
-
-                input("Your atack end. Hit enter to continue. (press enter)")
-                print()
-                """
-
-
-                if(hitPoints <= 0):
-                    print("you lost")
-                    print("you lasted " + str(round) + " rounds")
-                    print("##############")
-                    print()
-                    break
-                elif(enemyLife <= 0):
-                    print("You succeded in defeating your enemy")
-                    print("The enemy lasted " + str(round) + " rounds")
-                    print("##############")
-                    print()
-                    break
-            break
+        self.checkWinner(hitPoints, enemyLife, round)
 
 
 class GiantSpider(Enemy):
@@ -114,7 +84,7 @@ class GiantSpider(Enemy):
 
 class Ogre(Enemy):
     def __init__(self):
-        super().__init__(name="Ogre", hp=15, damage=1)
+        super().__init__(name="Ogre", hp=2, damage=1)
 
 
 class Dragon(Enemy):
