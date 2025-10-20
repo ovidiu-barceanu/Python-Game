@@ -1,10 +1,29 @@
 import random
+from generators import ItemGenerator as lootGenerator
+import items
+from html.entities import name2codepoint
 
-class generateRoom():
-    def __init__(self):
+
+class generateRoom(object):
+    def __init__(self, name, description, exits, options):
         print("Initialise Room Options")
+        self.name = name
+        self.description= description
+        self.exits = list(exits)
+        self.options = options
 
-    def generateEnemy(self, enemyList):
+    def __str__(self):
+        return f'This is the {self.name} and it is the {self.description}'
+
+    def __repr__(self):
+        return f'Room(\'{self.name}\', {self.exits})'
+
+
+
+    def showExists(self):
+        print(self.__repr__())
+
+    def generateEncounter(self, enemyList):
         print("generate enemy")
         enemy = random.choice(enemyList)
         if enemy == "none":
@@ -17,6 +36,11 @@ class generateRoom():
     def generateLoot(self, loot):
         print("generate loot")
         loot = random.choice(loot)
+        print ("Great, you just found a " + loot)
+
+    def generateLootV2(self, loot):
+        print("generate loot")
+        loot = lootGenerator.ItemGenerator(loot)
         print ("Great, you just found a " + loot)
 
     def choseDungeonSize(self):

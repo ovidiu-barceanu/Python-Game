@@ -1,0 +1,146 @@
+
+
+#     MAIN GAME BELOW VVVVVVVVVV
+
+def forestScene1():
+    global playerIsAlive
+    global gameIsOn
+
+    print(gtText01)
+    choice = makeChoice(gtChoice)
+
+    if choice == 2:
+        print("you decided you had enough adventures for today and go home")
+        gameIsOn = False
+        # return gameIsOn
+
+    elif choice == 1:
+        print("Curiosity always gets the best of you and you decide to explore a bit")
+        # return "GateHouseScene01"
+        return gateHouseScene01()
+    else:
+        # choice not in (1, 2)
+        print("You have to do something")
+
+
+def gateHouseScene01():
+    global playerIsAlive
+    global gameIsOn
+
+    choice = makeChoice(gtChoice02)
+
+    if choice == 1:
+        print("There is no way you could open the gate like that")
+        gateHouseScene01()
+    elif choice == 2:
+        # print("You try to squeeze through the crack but a boulder shits and the whole pylon crashes onto you and kills you")
+        # playerIsAlive = False
+        playerIsAlive = playerDeath(gtDeath)
+    elif choice == 3:
+        print("You manage to force open the door")
+        return gateHouseRoom()
+    else:
+        print("You have to do something")
+        gateHouseScene01()
+
+
+
+def gateHouseRoom():
+    print("You are in the gateHouse room, inside the gateHouse room you find a ladder and a lever")
+    global playerIsAlive
+    global gameIsOn
+    global inventory
+
+    choice = makeChoice(""" Do you:
+    1 - pull the lever
+    2 -Climb the ladder
+    """)
+
+    if choice == 1:
+        print("You pull the lever and go outside. The gate didn't fully opened but it did moved enough so you could slip in")
+        print(inventory)
+        castleCourtyard()
+    elif choice == 2:
+        print("You climb the ladder and reach a balcony that overview the courtyard")
+        castleCourtyardSneak()
+    else:
+        print("You have to do something")
+        gateHouseRoom()
+
+
+def castleCourtyard():
+    print("the noise from trying to open the gate unfortunately attracted the attention of a couple of undeads that were mindlesy walking arround the yard")
+    global playerIsAlive
+    global gameIsOn
+    global inventory
+
+    choice = makeChoice("""
+    Do you:
+    1 - Run
+    2 - Attack with your bow
+    3 - Attack with your sword
+    """)
+
+    if choice == 1:
+        print("You try to make a haste retreat but unfortunately your jacket gets stuck in the gate, "
+              "delaying you enough so that the undead reaches you and kills you")
+        playerIsAlive = False
+    elif choice == 2:
+        print("Since they are not close enough you decide the bow will be the best option. You take 2 out with the arrows"
+              "and when the third one is to close you switch to your blade and dispose it.")
+        print("Ha, would you look at that, one of the monsters dropped a trinket")
+        inventory.add_item("Silver Necklace")
+        print(inventory)
+    elif choice == 3:
+        print("You feel you can take them on with your sword and charge them directly."
+              "Unfortunately they take a few swings before you put them down")
+    else:
+        print("You have to do something")
+#         Return current scene
+
+def castleCourtyardSneak():
+    print("from the balcony you can scout the courtyard and spot 3 undead. Good thing you took this route because they didn't noticed you yet")
+    global playerIsAlive
+    global gameIsOn
+
+
+    choice = makeChoice("""
+    Do you:
+    1 - Attack them with your bow
+    2 - Let them be for now
+    3 - Leave
+    """)
+
+    if choice == 1:
+        print("You manage to take them out before the even knew what was going on")
+    elif choice == 2:
+        print("You decide to scout more before deciding if it is worth it to engage in combat")
+    elif choice == 3:
+        print("You decide the risks are not worth it and go back and pack your camp and leave")
+        gameIsOn = False
+    else:
+        print("You have to do something")
+#         Return current scene
+
+
+def sceneDraft():
+    global playerIsAlive
+    global gameIsOn
+
+    choice = makeChoice("text")
+
+    if choice == 1:
+        print("text")
+    elif choice == 2:
+        print("text")
+    elif choice == 3:
+        print("text")
+    else:
+        print("You have to do something")
+#         Return current scene
+
+
+# while playerIsAlive and gameIsOn:
+#     forestScene()
+
+
