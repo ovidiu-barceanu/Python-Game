@@ -10,6 +10,8 @@ from generators.texts import *
 from items import *
 from actions.InventoryInteractions import *
 import os
+from actions.gameEvents import *
+from generators.imageConverterToAsci import ASCIIImage
 
 # Steps:
 # Initialise room generator
@@ -24,18 +26,6 @@ import os
 playerIsAlive = True
 gameIsOn = True
 
-def stopGame():
-    global gameIsOn
-    gameIsOn = False
-    print("Game Stopped")
-
-def GameOver():
-    global gameIsOn
-    gameIsOn = False
-    print("GameOver")
-
-def pause():
-    input("Press Enter to continue... ")
 
 # TODO this function doesn't work. error : TERM environment variable not set.
 def clear_screen():
@@ -43,49 +33,54 @@ def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
+clear_screen()
+# ======= Welcome screen =======
 print(welcome_text)
-pause()
+print()
 print("===========")
 
+# ======= Create player =======
 playerName = input("--> What's your name: ")
 player = PlayerGenerator(playerName, 10, 1)
 
 print()
-# printTarty1("hello   "+ player.name)
-print(f"Hello {playerName}. Get ready for your adventure")
+# print(f"Hello {playerName}. Get ready for your adventure")
+game_log(f"Hello {playerName}. Get ready for your adventure")
+print()
 
 pause()
 print("===========")
 
 
-#Initialize inventory
+
+# ======= Initialize inventory =======
 backpack = Inventory()
 
 
+
+# ======= Game scenes =======
 def scene01():
 
-    print("this is first scene")
+    # print("this is first scene")
+    game_log("After a long day of working in the village you decide to go home ")
 
-
-#Generate item
-
+# ----- Generate scene items -----
     healthPotion = ItemGenerator(health_potion_dict)
-    print("Strolling down the forest path towards your village you find a health potion")
-    print("Do you want to pick it up?")
+    goldCoin = ItemGenerator(gold_coint_dict)
 
-    while True:
-        print("1 - yes")
-        print("2 - no")
-        choice = input("--> ")
+# ----- Generate scene enemies -----
+    goblin = EnemyGenerator(*enemies_stats["Goblin"])
 
-        if choice == "1":
-            backpack.add_item(healthPotion)
-            break
-        elif choice == "2":
-            print("You decided not to pick up the health potion")
-            break
-        else:
-            print("Invalid choice — choose again.")
+# ----- Gameplay -----
+
+
+    scene01Text01 = "Strolling down the forest path towards your home you find a health potion\nDo you want to pick it up?"
+
+    result = choose(scene01Text01, "yes", "no")
+    if result == "yes":
+        backpack.add_item(healthPotion)
+    else:
+        print(f"You decided not to pick up {healthPotion.getItemName()}")
 
 
     pause()
@@ -94,27 +89,35 @@ def scene01():
     print("Continuing your stroll towards your village something jumps in front of you")
     pause()
 
-    #fight scene
-#Create enemy
-    goblin = EnemyGenerator(*enemies_stats["Goblin"])
+
+# ----- fight scene -----
 
 # Display enemy stats
     print(f"Oh no, looks like a {goblin.enemyType} decided to attack you")
     print()
+
+    goblin_ascii = ASCIIImage("generators/Front - Idle_000.png", width=40)
+
+    # Print to terminal
+    goblin_ascii.print()
+
     print(f"Enemy HP is {goblin.hp}")
     print(f"Enemy type is {goblin.enemyType}")
     print(f"Enemy damage is {goblin.damage}")
 
     pause()
+    print()
     print("=========")
     print()
 
     fight01=CombatActions(player, goblin)
 
-    print("Let's see who starts the attack")
+    print()
+    print("Deciding who strikes first")
     print()
     order = fight01.strikeOrder()
     pause()
+    print()
     print("=========")
     print()
 
@@ -134,6 +137,8 @@ def scene01():
 
     while player.playerHp > 0 and goblin.hp > 0:
 
+        print("===========")
+        print("Stats:")
         print(f"Goblin HP: {goblin.hp}")
         print(f"{player.name}'s HP: {player.playerHp}")
         print("-" * 30)
@@ -166,6 +171,8 @@ def scene01():
         #Check if enemy is defeated
         if goblin.hp <= 0:
             print(f"You defeated {goblin.enemyType}")
+            print(" the goblin dropped a coin")
+            backpack.add_item(goldCoin)
             scene02()
             return
 
@@ -183,8 +190,11 @@ def scene01():
 def scene02():
     print("Second scene to be implemented")
     print("press enter to stop the game")
-    pause()
+    # pause()
     stopGame()
+
+
+# ======= Start Game =======
 while playerIsAlive and gameIsOn:
     scene01()
 

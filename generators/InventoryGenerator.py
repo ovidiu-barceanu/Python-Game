@@ -19,13 +19,13 @@ class Inventory:
         return f"The content of your endless bag consists of: {', '.join(item.getItemName() for item in self.inventory)}\n"
 
     def add_item(self, item):
-        print(f"You pick up the {item}")
+        print(f"You pick up the {item.getItemName()}")
         self.inventory.append(item)
         return self.inventory
 
     def removeItem(self, item):
         self.inventory.remove(item)
-        print(f"You used {item}")
+        print(f"You used {item.getItemName()}")
         return self.inventory
 
     def useItem(self, item):

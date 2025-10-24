@@ -26,8 +26,35 @@ s = "  Hello, Python World!  "
 #
 # print(f"Hello, {name.upper()}!")
 
-def is_even(num):
-    return num &1==0
+# def is_even(num):
+#     return num &1==0
+#
+# print(is_even(2))
+# print(is_even(3))
 
-print(is_even(2))
-print(is_even(3))
+#
+# def f(x, items=[]):
+#     items.append(x)
+#     return items
+#
+# print(f(1))
+# print(f(2))
+# print(f(3, []))
+# print(f(4))
+
+
+# def evenOdd(x):
+#     if x%2 == 0:
+#         print("even")
+#     else:
+#         print("odd")
+# evenOdd(2)
+# evenOdd(3)
+
+
+{"a": 1, "b": 2}.get("c", 99)
+print({"a": 1, "b": 2}.get("c", 99)
+)
+
+"Hello".lower()
+print("Hello".lower())

@@ -19,3 +19,10 @@ health_potion_dict = {
     "usesLeft": 1,
     "value": 100
 }
+
+gold_coint_dict = {
+    "name": "Gold Coin",
+    "consumableType": "one_time",
+    "usesLeft": 1,
+    "value": 1
+}

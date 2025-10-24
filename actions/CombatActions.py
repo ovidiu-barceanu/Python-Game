@@ -33,19 +33,20 @@ class CombatActions:
     #         return "player"
 
     def strikeOrder(self):
+        print("Rolling the dice...")
         enemy_dice = self.__diceRoll(self.enemy)
         player_dice = self.__diceRoll(self.player)
 
         while enemy_dice == player_dice:  # reroll ties
-            print("It's a tie! Rerolling...")
+            print("It's a tie! Re rolling...")
             enemy_dice = self.__diceRoll(self.enemy)
             player_dice = self.__diceRoll(self.player)
 
         if enemy_dice > player_dice:
-            print("The enemy was faster and strikes first.")
+            print("Enemy rolls higher")
             return self.enemy
         else:
-            print("You were faster and strike first.")
+            print("You rolled higher")
             return self.player
 
 
